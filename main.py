@@ -16,11 +16,11 @@ def keep_alive():
 # --- Configurações ---
 # Dicionário para armazenar os alvos de rastreamento e seus estados
 TRACKING_TARGETS = {
-    "Cainiao": {
-        "url": "https://global.cainiao.com/newDetail.htm?mailNoList=CNBR00068636289&otherMailNoList=",
+    "Teclado": {
+        "url": "https://www.ordertracker.com/pt/track/CNBR00068636289",
         "previous_hash": None # Hash anterior específico para este alvo
     },
-    "Samsung SCL": {
+    "Samsung": {
         "url": "https://plusla.samsungscl.com/cello/tms/html/tms/prime/ext/TmsTrackAndTraceBrExt.html?TRACKING_NO=ZGMyMDRhZWZhMjNiY2MyNDU2ZWRjOGUzMmRhMmEzNDU=",
         "previous_hash": None # Hash anterior específico para este alvo
     }
