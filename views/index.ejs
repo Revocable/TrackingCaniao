@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Rastreamento</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Monitor de Rastreamento</h1>
+
+        <h2>Encomendas Monitoradas</h2>
+        <% if (targets && targets.length > 0) { %>
+            <div class="tracking-table-wrapper">
+                <table class="tracking-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>URL</th>
+                            <th>Última Atualização</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% targets.forEach((target) => { %>
+                            <tr>
+                                <td><%= target.name %></td>
+                                <td><a href="<%= target.url %>" target="_blank" rel="noopener noreferrer" title="<%= target.url %>">
+                                    <%= target.url.length > 50 ? target.url.substring(0, 50) + '...' : target.url %>
+                                </a></td>
+                                <td>
+                                    <% if (target.last_changed) { %>
+                                        <span class="last-changed-date"><%= new Date(target.last_changed).toLocaleString('pt-BR') %></span>
+                                    <% } else { %>
+                                        <span class="status status-pending">Nenhuma mudança</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <span class="status status-<%= target.status %>">
+                                        <%= target.status === 'pending' ? 'Pendente' :
+                                           target.status === 'checking' ? 'Verificando' :
+                                           target.status === 'unchanged' ? 'Sem mudanças' :
+                                           target.status === 'changed' ? 'Atualizado' :
+                                           target.status === 'failed' ? 'Falha' : 'Desconhecido'
+                                        %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <!-- Formulário para exclusão -->
+                                    <form action="/delete" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja remover <%= target.name %>?');">
+                                        <input type="hidden" name="id" value="<%= target.id %>">
+                                        <button type="submit" class="action-button delete-button" title="Remover <%= target.name %>">
+                                            <span class="delete-icon"></span> <!-- Ícone unicode -->
+                                            <!-- <span style="margin-left: 5px;">Remover</span> --> <!-- Texto opcional -->
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p style="text-align: center; color: var(--secondary-text-color); margin: 30px 0;">Nenhuma encomenda sendo monitorada. Adicione uma abaixo!</p>
+        <% } %>
+
+        <div class="add-form">
+            <h2>Adicionar Nova Encomenda</h2>
+            <form action="/add" method="POST">
+                <div class="form-group">
+                    <label for="name">Nome da Encomenda:</label>
+                    <input type="text" id="name" name="name" required placeholder="Ex: Meu Teclado Novo">
+                </div>
+                <div class="form-group">
+                    <label for="url">URL de Rastreamento:</label>
+                    <input type="url" id="url" name="url" required placeholder="https://servico.rastreamento/codigo=XYZ">
+                </div>
+                <button type="submit" class="action-button">Adicionar Rastreio</button>
+            </form>
+            <!-- Exibir mensagem de feedback -->
+            <% if (typeof message !== 'undefined' && message) { %>
+                <p class="feedback-message <%= messageType %>"><%= message %></p>
+            <% } %>
+        </div>
+
+    </div>
+</body>
+</html>

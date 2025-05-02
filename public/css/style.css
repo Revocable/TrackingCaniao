@@ -1,0 +1,277 @@
+:root {
+    --bg-color: #1a1a1a; /* Fundo principal escuro */
+    --surface-color: #2a2a2a; /* Cor de superfícies (cards, tabelas) */
+    --primary-text-color: #e0e0e0; /* Cor do texto principal */
+    --secondary-text-color: #a0a0a0; /* Cor do texto secundário/descritivo */
+    --accent-color: #00aaff; /* Cor de destaque (links, botões) */
+    --accent-hover-color: #0088cc;
+    --success-color: #4CAF50; /* Verde para sucesso/mudança */
+    --warning-color: #ffeb3b; /* Amarelo para aviso/verificando */
+    --error-color: #f44336; /* Vermelho para erro/falha */
+    --border-color: #444; /* Cor das bordas */
+    --table-header-bg: #333;
+    --table-row-even-bg: #252525;
+    --form-bg: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: var(--surface-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+h1, h2 {
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 2.2em;
+}
+
+h2 {
+    font-size: 1.6em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+/* --- Tabela de Rastreios --- */
+.tracking-table-wrapper {
+     overflow-x: auto; /* Para rolagem em telas pequenas */
+     margin-bottom: 30px;
+}
+
+.tracking-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Evita que a tabela fique muito espremida */
+}
+
+.tracking-table th,
+.tracking-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle; /* Alinha conteúdo verticalmente */
+}
+
+.tracking-table th {
+    background-color: var(--table-header-bg);
+    color: var(--primary-text-color);
+    font-weight: 600;
+}
+
+.tracking-table tr:nth-child(even) {
+    background-color: var(--table-row-even-bg);
+}
+
+.tracking-table tr:hover {
+    background-color: #383838;
+}
+
+.tracking-table td a {
+    color: var(--accent-color);
+    text-decoration: none;
+    word-break: break-all; /* Quebra URLs longas */
+}
+
+.tracking-table td a:hover {
+    text-decoration: underline;
+}
+
+.status {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block; /* Para o padding funcionar bem */
+    font-size: 0.9em;
+}
+
+.status-unchanged, .status-pending {
+    color: var(--secondary-text-color);
+    font-style: italic;
+}
+
+.status-changed {
+    color: #fff; /* Texto branco para contraste */
+    background-color: var(--success-color);
+}
+
+.status-checking {
+    color: #333; /* Texto escuro para contraste */
+    background-color: var(--warning-color);
+}
+.status-failed {
+    color: #fff; /* Texto branco para contraste */
+    background-color: var(--error-color);
+}
+
+.last-changed-date {
+     color: var(--success-color);
+     font-weight: bold;
+     font-size: 0.9em;
+}
+
+/* --- Formulário de Adição --- */
+.add-form {
+    background-color: var(--form-bg);
+    padding: 25px;
+    border-radius: 5px;
+    margin-top: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.add-form h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-text-color);
+    text-align: left;
+    font-size: 1.5em;
+    border-bottom: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--secondary-text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--surface-color);
+    color: var(--primary-text-color);
+    font-size: 1em;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="url"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.3);
+}
+
+
+.action-button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: inline-flex; /* Para alinhar ícone e texto */
+    align-items: center;
+    gap: 8px; /* Espaço entre ícone e texto */
+    text-decoration: none; /* Remove sublinhado se for link */
+}
+
+.action-button:hover {
+    background-color: var(--accent-hover-color);
+}
+
+.delete-button {
+    background-color: var(--error-color);
+    padding: 6px 10px;
+    font-size: 0.9em;
+}
+
+.delete-button:hover {
+     background-color: #c82333;
+}
+
+/* Ícone de lixeira (simples com caractere unicode) */
+.delete-icon::before {
+    content: "\1F5D1"; /* Código unicode para lixeira */
+    font-size: 1.1em;
+    /* Estilos adicionais se necessário */
+}
+
+/* Mensagens de feedback */
+.feedback-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.feedback-message.success {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+.feedback-message.error {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .tracking-table th,
+    .tracking-table td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="url"] {
+         padding: 10px;
+    }
+
+     .action-button {
+         padding: 8px 15px;
+         font-size: 0.95em;
+     }
+     .delete-button {
+         padding: 5px 8px;
+         font-size: 0.85em;
+     }
+}
+
+@media (max-width: 480px) {
+     h1 { font-size: 1.8em; }
+     h2 { font-size: 1.3em; }
+    .tracking-table {
+        font-size: 0.8em;
+    }
+    .delete-button .delete-icon::before {
+        font-size: 1em; /* Ajusta ícone para telas menores */
+    }
+    .delete-button span { /* Opcional: Esconde texto em telas muito pequenas */
+       display: none;
+    }
+     .action-button {
+         min-width: 38px; /* Garante espaço mínimo para o botão (ícone) */
+         justify-content: center;
+     }
+}
